@@ -171,13 +171,44 @@ class SingleLinkedList:
 			self.head = self.head.next
 		itr = self.head
 		while itr:
-
 			if itr.next.data == dataQeury:
 				itr.next = itr.next.next
 				break
 			if itr.next.next ==None:
 				print("No elements left after this element")
 			itr = itr.next
+
+	def returnHeadNode(self):
+		return self.head
+
+	def linkedListToArray(self):
+		len = self.countLengthOfList()
+		itr = self.head
+		lt = []
+		while itr:
+			lt.append(itr.data)
+			itr = itr.next
+		return lt
+
+	def reverseConvertedList(self):
+		lt = self.linkedListToArray()
+
+		return lt[::-1]
+
+	def singleLinkedListToCircular(self):
+		itr = self.head
+
+		while self.head.next is not None:
+			self.head = self.head.next
+		
+		self.head.next = itr
+		print("Linked list is circular",itr.data)
+
+	def arrayToLinkedList(self,arr):
+		n = len(arr)
+
+		root = None
+		
 
 	def printList(self):
 		if self.head is None:
@@ -190,6 +221,36 @@ class SingleLinkedList:
 			itr = itr.next
 		print(listData)
 
+	# Sort the linked list using selection sort
+	def swap(self,arr,i,j):
+		temp = arr[i]
+		arr[i]=arr[j]
+		arr[j]= temp
+	def sortLinkedList(self):
+		listData =[]
+		if self.head is None:
+			print("Linked list is empty cannot able sort")
+			return
+		itr = self.head
+		while itr:
+			listData.append(itr.data)
+			itr = itr.next
+		listData[::-1]
+		#Selection sort from here
+		n = len(listData)
+		for i in range(0,n-1):
+			min=i
+			for j in range(i+1,n-1):
+				if listData[j]<listData[min]:
+					min =j
+			self.swap(listData,i,min)
+		print("listData")
+		print(listData)
+
+
+
+
+
 
 
 ll = SingleLinkedList()
@@ -197,17 +258,19 @@ ll.insertBegining(12)
 ll.insertBegining(13)
 ll.insertBegining(14)
 ll.insertEnd(1)
-# ll.insertEnd(2)
+ll.insertEnd(2)
 # ll.insertList_end([1,2,3,4,5,6,7,8,9])
 # ll.deleteBegining()
 print("The length of the list is ",ll.countLengthOfList())
-ll.insertPosition(99,1)
-ll.insertValueAfterValue(1,11)
-ll.removeByValue(11)
+# ll.insertPosition(99,1)
+# ll.insertValueAfterValue(1,11)
+# ll.removeByValue(11)
 # ll.deleteEnd()
-
+ll.printList()
+print(ll.linkedListToArray())
+print("reverseList is ",ll.reverseConvertedList())
+# ll.singleLinkedListToCircular()
 # ll.reverseList()
 # ll.delete_at_index(4)
-	
-ll.printList()
 
+ll.sortLinkedList()
