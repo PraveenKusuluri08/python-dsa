@@ -14,8 +14,7 @@ class SingleLinkedList:
 
 	def insertEnd(self,data):
 		if self.head is None:
-			node = Node(data,None)
-			self.head = node
+			self.insertBegining(data)
 			return
 		itr = self.head
 		while itr.next:
@@ -235,22 +234,16 @@ class SingleLinkedList:
 		while itr:
 			listData.append(itr.data)
 			itr = itr.next
-		listData[::-1]
 		#Selection sort from here
 		n = len(listData)
-		for i in range(0,n-1):
+		for i in range(n):
 			min=i
-			for j in range(i+1,n-1):
+			for j in range(i+1,n):
 				if listData[j]<listData[min]:
 					min =j
 			self.swap(listData,i,min)
-		print("listData")
+		print("Sorted  list data")
 		print(listData)
-
-
-
-
-
 
 
 ll = SingleLinkedList()
